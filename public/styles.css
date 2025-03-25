@@ -1,0 +1,228 @@
+body { 
+    max-width: 1000px; 
+    margin: 20px auto; 
+    padding: 20px; 
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.container { 
+    text-align: center; 
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 100%;
+    padding: 1.5rem;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+#result { 
+    margin-top: 2rem; 
+    padding: 1.5rem; 
+    border-radius: 12px;
+    min-height: 100px;
+    background: #f8f9fa;
+    text-align: left;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    line-height: 1.6;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.copy-btn:hover {
+    transform: translateY(-1px);
+}
+
+.loading { 
+    display: none;
+    margin: 2rem auto;
+}
+
+.loading img {
+    width: 80px;
+    height: 80px;
+    /* border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); */
+}
+
+button {
+    padding: 12px 30px;
+    margin: 10px;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+}
+
+.file-input-container {
+    margin: 2rem 0;
+    padding: 2rem;
+    border: 2px dashed #007bff;
+    border-radius: 12px;
+    background: rgba(0,123,255,0.05);
+}
+
+#audioFile {
+    padding: 1rem;
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 1rem;
+}
+
+.supported-formats {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.format-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.format-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.format-list li {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.format-list li:hover {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .format-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+
+    body {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .file-input-container {
+        padding: 1rem;
+    }
+
+    #audioFile {
+        width: 90%;
+        padding: 0.5rem;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .loading img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .copy-btn {
+        position: static;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    #result {
+        margin-top: 1rem;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .social-links {
+        gap: 15px;
+    }
+
+    .social-links a {
+        font-size: 1.2rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .supported-formats {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive footer */
+footer {
+    padding: 20px 10px;
+    width: 100%;
+}
+
+.footer-content {
+    padding: 0 15px;
+}

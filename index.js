@@ -55,15 +55,19 @@ app.post("/transcribe", async (req, res) => {
     }
 });
 
-// New endpoint for live audio stream
+// Web App API to transcribe microphone audio
 app.post("/transcribe-stream", async (req, res) => {
     try {
         if (!req.body.audio) {
             return res.status(400).json({ error: "No audio data received" });
         }
         
-        // Convert base64 audio to buffer
-        const audioBuffer = Buffer.from(req.body.audio.split(',')[1], 'base64');
+        // Extract uploaded data from base64
+        const base64Data = req.body.audio.includes(',') 
+            ? req.body.audio.split(',')[1] 
+            : req.body.audio;
+            
+        const audioBuffer = Buffer.from(base64Data, 'base64');
         
         const { result, error } = await deepgramClient.listen.prerecorded.transcribeFile(
             audioBuffer,
@@ -72,15 +76,21 @@ app.post("/transcribe-stream", async (req, res) => {
                 model: "nova",
                 language: "en",
                 smart_format: true,
+                detect_language: true,  // more language :)
             }
         );
         
         if (error) throw error;
         const transcription = result?.results?.channels?.[0]?.alternatives?.[0]?.transcript;
+        
         if (!transcription) {
             throw new Error("No transcription found in the response");
         }
-        res.json({ transcription });
+        
+        res.json({ 
+            transcription,
+            language: result?.results?.channels?.[0]?.detected_language  // Include detected language if available
+        });
     } catch (error) {
         console.error("Stream transcription error:", error);
         res.status(500).json({
@@ -90,6 +100,12 @@ app.post("/transcribe-stream", async (req, res) => {
     }
 });
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+});
+
 app.listen(port, () => {
-    console.log(`App is listening on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });
